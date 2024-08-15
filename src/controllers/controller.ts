@@ -13,7 +13,7 @@ class Controller implements ControllerInterface {
     async findAll(req: Request, res: Response) {
         try {
             const data = await this.entidadeService.findAll?.();
-            return res.status(200).json(data);
+            return res.status(200).json({data});
         } catch (error) {
             return handleError(res, error);
         }
