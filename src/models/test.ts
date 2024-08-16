@@ -4,7 +4,7 @@ class CTest extends Model {
     public id!: number;
     public name!: string;
 
-    static associate(models: any) {
+    static associate(_models: Record<string, typeof Model>) {
         // Test.hasMany<typeof models.NAMEMODULE>(models.NAMEMODULE, {
         //     foreignKey: 'id_other_table'
         // });

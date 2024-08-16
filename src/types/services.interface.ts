@@ -3,9 +3,9 @@ export interface ServicesInterface {
 
     findById(id: number): Promise<unknown>;
 
-    create(data: any): Promise<unknown>;
+    create(data: Record<string, unknown>): Promise<unknown>;
 
-    update(data: any, id: number): Promise<boolean>;
+    update(data: Record<string, unknown>, id: number): Promise<boolean>;
 
     delete(id: number): Promise<void>;
 }

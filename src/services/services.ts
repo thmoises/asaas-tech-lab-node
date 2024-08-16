@@ -17,11 +17,11 @@ class Services implements ServicesInterface {
         return dataSource[this.model].findByPk(id);
     }
 
-    async create(data: any) {
+    async create(data: Record<string, unknown>) {
         return dataSource[this.model].create(data);
     }
 
-    async update(data: any, id: number) {
+    async update(data: Record<string, unknown>, id: number) {
         const record = await dataSource[this.model].findByPk(id);
         if (!record) {
             throw new Error(ErrorTypesEnum.NOT_FOUND);
