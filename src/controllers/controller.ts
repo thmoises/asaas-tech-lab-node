@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import Services from "../services/services";
 import {ControllerInterface} from "../types/controller.interface";
-import {handleError} from '../help/error-handler';
+import {handleError} from '../helpers/error-handler';
 
 class Controller implements ControllerInterface {
     private readonly entidadeService: Partial<Services>;
