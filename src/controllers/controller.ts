@@ -33,9 +33,7 @@ class Controller implements ControllerInterface {
     const body = req.body;
     try {
       const data = await this.entidadeService.create?.(body);
-      return res
-        .status(200)
-        .json({ data, mensagem: `Registro criado com sucesso.` });
+      return res.status(200).json({ data, message: `Record created successfully.` });
     } catch (error) {
       return handleError(res, error);
     }
@@ -47,14 +45,10 @@ class Controller implements ControllerInterface {
     try {
       const isUpdated = await this.entidadeService.update?.(body, Number(id));
       if (!isUpdated) {
-        return res
-          .status(400)
-          .json({ mensagem: 'Não foi possível alterar o registro.' });
+        return res.status(400).json({ message: 'Unable to change the record.' });
       }
 
-      return res
-        .status(200)
-        .json({ mensagem: `Registro alterado com sucesso.` });
+      return res.status(200).json({ message: `Record updated successfully.` });
     } catch (error) {
       return handleError(res, error);
     }
@@ -64,9 +58,7 @@ class Controller implements ControllerInterface {
     const { id } = req.params;
     try {
       await this.entidadeService.delete?.(Number(id));
-      return res
-        .status(200)
-        .json({ mensagem: `Registro deletado com sucesso.` });
+      return res.status(200).json({ message: `Record deleted successfully.` });
     } catch (error) {
       return handleError(res, error);
     }

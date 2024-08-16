@@ -8,8 +8,7 @@ const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
     title: 'Swagger aplicação Node - Asaas Tech Lab',
-    description:
-      'Esta é a documentação da REST API feita em Node para o desafio da Asaas Tech Lab.',
+    description: 'Esta é a documentação da REST API feita em Node para o desafio da Asaas Tech Lab.',
     version: '1.0.0',
   },
   servers: [

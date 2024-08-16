@@ -32,9 +32,7 @@ const router = Router();
  *                         description: Name.
  *                         example: Sou um teste
  */
-router.get('/test', (req: Request, res: Response) =>
-  testController.findAll(req, res)
-);
+router.get('/test', (req: Request, res: Response) => testController.findAll(req, res));
 
 /**
  * @swagger
@@ -75,9 +73,7 @@ router.get('/test', (req: Request, res: Response) =>
  *                   description: Data de atualização.
  *                   example: 2024-08-15T19:41:15.816Z
  */
-router.get('/test/:id', (req: Request, res: Response) =>
-  testController.findById(req, res)
-);
+router.get('/test/:id', (req: Request, res: Response) => testController.findById(req, res));
 
 /**
  * @swagger
@@ -127,11 +123,9 @@ router.get('/test/:id', (req: Request, res: Response) =>
  *                 mensagem:
  *                   type: string
  *                   description: Mensagem de sucesso.
- *                   example: Registro criado com sucesso.
+ *                   example: Record created successfully.
  */
-router.post('/test', (req: Request, res: Response) =>
-  testController.create(req, res)
-);
+router.post('/test', (req: Request, res: Response) => testController.create(req, res));
 
 /**
  * @swagger
@@ -167,11 +161,9 @@ router.post('/test', (req: Request, res: Response) =>
  *                 mensagem:
  *                   type: string
  *                   description: Mensagem de sucesso.
- *                   example: Registro alterado com sucesso.
+ *                   example: Record changed successfully.
  */
-router.put('/test/:id', (req: Request, res: Response) =>
-  testController.update(req, res)
-);
+router.put('/test/:id', (req: Request, res: Response) => testController.update(req, res));
 
 /**
  * @swagger
@@ -196,10 +188,8 @@ router.put('/test/:id', (req: Request, res: Response) =>
  *                 mensagem:
  *                   type: string
  *                   description: Mensagem de sucesso.
- *                   example: Registro deletado com sucesso.
+ *                   example: Record deleted successfully.
  */
-router.delete('/test/:id', (req: Request, res: Response) =>
-  testController.delete(req, res)
-);
+router.delete('/test/:id', (req: Request, res: Response) => testController.delete(req, res));
 
 export default router;
