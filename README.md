@@ -5,7 +5,7 @@ Para o desenvolvimento do projeto, existe um arquivo docker-compose.yml que sobe
 <br><br>
 O template utiliza Express na versão 4.19.2, ORM Sequelize na versão 6.32.1 e SQLite3 na versão 5.1.6.
 <br>
-Link para a documentação do Sequelize utilizado: Sequelize Documentation
+Link para a documentação do Sequelize utilizado: https://sequelize.org/docs/v6/
 <br><br>
 O Swagger foi habilitado, então, ao definir uma rota através da anotação `@swagger`, é possível gerar a documentação da API.<br> 
 Também é possível acessar a documentação na URL `/docs` e fazer os testes. Exemplo:
@@ -40,9 +40,10 @@ Também é possível acessar a documentação na URL `/docs` e fazer os testes. 
  */
 router.get('/test', (req: Request, res: Response) => testController.findAll(req, res));
 ```
+
 <br>
-Link para documentacao do Swagger utilizado: https://swagger.io/docs/specification/about/
-<br><br>
+
+Link para documentacao do Swagger utilizado: https://github.com/Surnet/swagger-jsdoc/blob/v5/docs/GETTING-STARTED.md 
 
 ## Subindo a aplicação
 Para subir a aplicação, basta rodar o comando `docker-compose up -d` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 3000.
@@ -89,28 +90,28 @@ npx sequelize-cli db:seed:all
 ```
 
 ## Estrutura do Projeto
-asaas-tech-lab-node <br>
-├── src <br>
-│   ├── controllers (Pasta que armazena os controllers da aplicação) <br>
-│   │   ├── controller.ts (Abstração para ser estendida aos seus controllers) <br>
-│   ├── database <br>
-│   │   ├── config.json (Configurações do banco de dados) <br>
-│   │   └── migrations (Pasta que armazena as migrations criadas) <br>
-│   │   └── seeders (Pasta que armazena as seeds criadas) <br>
-│   ├── enums (Pasta que armazena os enums da aplicação) <br>
-│   ├── helpers (Pasta que armazena os helpers da aplicação) <br>
-│   ├── models (Pasta que armazena os models da aplicação) <br>
-│   │   └── index.ts (Arquivo que conecta os models ao banco de dados de forma dinâmica) <br>
-│   ├── routes (Pasta que armazena as rotas da aplicação) <br>
-│   │   └── index.ts (Arquivo que conecta as rotas ao app) <br>
-│   ├── services (Pasta que armazena os services da aplicação) <br>
-│   │   ├── services.ts (Abstração para ser estendida aos seus serviços) <br>
-│   ├── types (Pasta que armazena os types da aplicação) <br>
-│   └── app.ts <br>
-├── .eslintrc.json (Configurações do ESLint) <br>
-├── .sequelizerc (Configurações do Sequelize) <br>
-├── database.sqlite (Banco de dados) <br>
-├── docker-compose.yml <br>
-├── Dockerfile <br>
-├── server.ts <br>
-└── tsconfig.json (Configurações do TypeScript) <br>
+`asaas-tech-lab-node` <br>
+├── `src` <br>
+│   ├── `controllers` Pasta que armazena os controllers da aplicação <br>
+│   │   ├── `controller.ts` Abstração para ser estendida aos seus controllers <br>
+│   ├── `database` <br>
+│   │   ├── `config.json` Configurações do banco de dados <br>
+│   │   └── `migrations` Pasta que armazena as migrations criadas <br>
+│   │   └── `seeders` Pasta que armazena as seeds criadas <br>
+│   ├── `enums` Pasta que armazena os enums da aplicação <br>
+│   ├── `helpers` Pasta que armazena os helpers da aplicação <br>
+│   ├── `models` Pasta que armazena os models da aplicação <br>
+│   │   └── `index.ts` Arquivo que conecta os models ao banco de dados de forma dinâmica <br>
+│   ├── `routes` Pasta que armazena as rotas da aplicação <br>
+│   │   └── `index.ts` Arquivo que conecta as rotas ao app <br>
+│   ├── `services` Pasta que armazena os services da aplicação <br>
+│   │   ├── `services.ts` Abstração para ser estendida aos seus serviços <br>
+│   ├── `types` Pasta que armazena os types da aplicação <br>
+│   └── `app.ts` <br>
+├── `.eslintrc.json` Configurações do ESLint <br>
+├── `.sequelizerc` Configurações do Sequelize <br>
+├── `database.sqlite` Banco de dados <br>
+├── `docker-compose.yml` <br>
+├── `Dockerfile` <br>
+├── `server.ts` <br>
+└── `tsconfig.json` Configurações do TypeScript <br>
