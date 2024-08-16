@@ -1,5 +1,5 @@
-import Controller from "./controller";
-import TestServices from "../services/test-services";
+import Controller from './controller';
+import TestServices from '../services/test-services';
 
 const testServices = new TestServices();
 

@@ -32,7 +32,9 @@ const router = Router();
  *                         description: Name.
  *                         example: Sou um teste
  */
-router.get('/test', (req: Request, res: Response) => testController.findAll(req, res));
+router.get('/test', (req: Request, res: Response) =>
+  testController.findAll(req, res)
+);
 
 /**
  * @swagger
@@ -73,7 +75,9 @@ router.get('/test', (req: Request, res: Response) => testController.findAll(req,
  *                   description: Data de atualização.
  *                   example: 2024-08-15T19:41:15.816Z
  */
-router.get('/test/:id', (req: Request, res: Response) => testController.findById(req, res));
+router.get('/test/:id', (req: Request, res: Response) =>
+  testController.findById(req, res)
+);
 
 /**
  * @swagger
@@ -125,7 +129,9 @@ router.get('/test/:id', (req: Request, res: Response) => testController.findById
  *                   description: Mensagem de sucesso.
  *                   example: Registro criado com sucesso.
  */
-router.post('/test', (req: Request, res: Response) => testController.create(req, res));
+router.post('/test', (req: Request, res: Response) =>
+  testController.create(req, res)
+);
 
 /**
  * @swagger
@@ -163,7 +169,9 @@ router.post('/test', (req: Request, res: Response) => testController.create(req,
  *                   description: Mensagem de sucesso.
  *                   example: Registro alterado com sucesso.
  */
-router.put('/test/:id', (req: Request, res: Response) => testController.update(req, res));
+router.put('/test/:id', (req: Request, res: Response) =>
+  testController.update(req, res)
+);
 
 /**
  * @swagger
@@ -190,6 +198,8 @@ router.put('/test/:id', (req: Request, res: Response) => testController.update(r
  *                   description: Mensagem de sucesso.
  *                   example: Registro deletado com sucesso.
  */
-router.delete('/test/:id', (req: Request, res: Response) => testController.delete(req, res));
+router.delete('/test/:id', (req: Request, res: Response) =>
+  testController.delete(req, res)
+);
 
 export default router;
