@@ -1,6 +1,5 @@
 # Asaas Tech lab - Node
-
-## Desafio
+Template para desenvolvimento de API em Node.js<br><br>
 
 ## Doc
 https://sequelize.org/docs/v6/
@@ -27,10 +26,3 @@ Delete todas as imagens:
 ```ssh
 docker rmi -f $(docker images -aq)
 ```
-
-## Ambiente
-Node
-```v18.19.0```
-<br>
-NPM
-```10.2.3```
