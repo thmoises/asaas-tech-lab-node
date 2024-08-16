@@ -47,7 +47,7 @@ Link para documentacao do Swagger utilizado: https://github.com/Surnet/swagger-j
 
 ## Subindo a aplicação
 Para subir a aplicação, basta rodar o comando `docker-compose up -d` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 3000.
-<br>
+<br><br>
 Para rodar as migrações e seeds:
 
 ```bash
