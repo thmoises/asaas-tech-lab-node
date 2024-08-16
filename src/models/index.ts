@@ -4,7 +4,7 @@ import { Sequelize, DataTypes } from 'sequelize';
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require(__dirname + '/../database/config.json')[env];
 
 interface DB {
     [key: string]: any;

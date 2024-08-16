@@ -11,6 +11,22 @@ Migrate: ```npx sequelize-cli db:migrate```
 <br>
 Seed: ```npx sequelize-cli seed:generate --name test```, run ```npx sequelize-cli db:seed:all```
 
+## Docker
+Rodar aplicação:
+```ssh
+docker-compose up
+```
+### Comando uteis:
+<br>
+Delete todos os containers:
+```ssh
+docker rm -vf $(docker ps -aq)
+```
+<br>
+Delete todas as imagens:
+```ssh
+docker rmi -f $(docker images -aq)
+```
 
 ## Ambiente
 Node
