@@ -35,7 +35,7 @@ fs.readdirSync(__dirname)
     if (typeof model === 'function') {
       db[model.name] = model(db.sequelize, DataTypes);
     } else {
-      throw new Error(`O arquivo ${file} não exporta uma função`);
+      throw new Error(`The file ${file} does not export a function.`);
     }
   });
 
