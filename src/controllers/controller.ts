@@ -6,8 +6,8 @@ import { handleError } from '../helpers/error-handler';
 class Controller implements ControllerInterface {
   private readonly entityService: Partial<Services>;
 
-  constructor(entidadeService: Partial<Services>) {
-    this.entityService = entidadeService;
+  constructor(entityService: Partial<Services>) {
+    this.entityService = entityService;
   }
 
   async findAll(req: Request, res: Response) {
