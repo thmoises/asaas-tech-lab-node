@@ -13,11 +13,7 @@ const ERROR_PATTERN = {
   [ErrorTypesEnum.ALREADY_EXISTS]: {
     status: 400,
     message: 'Record already exists.',
-  },
-  [ErrorTypesEnum.REQUIRED]: {
-    status: 400,
-    message: 'Required field is missing.',
-  },
+  }
 };
 
 export const handleError = (

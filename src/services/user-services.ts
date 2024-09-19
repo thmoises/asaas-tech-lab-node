@@ -25,8 +25,6 @@ class UserServices extends Services {
   }
 
   private async validateUserCreation(data: CreateUserDTO) {
-    if (!data.email) throw new Error(ErrorTypesEnum.REQUIRED);
-
     const existingUser = await this.findByEmail(data.email);
     if (existingUser) throw new Error(ErrorTypesEnum.ALREADY_EXISTS);
   }
