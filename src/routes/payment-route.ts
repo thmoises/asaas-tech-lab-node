@@ -9,7 +9,7 @@ const router = Router();
  * @swagger
  * tags:
  *   name: Payment
- *   description: Payment management
+ *   description: Gerenciamento de Cobranças
  */
 
 /**
