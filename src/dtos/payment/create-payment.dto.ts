@@ -1,8 +1,8 @@
-import { CustomerAccountDTO } from './customer-account.dto';
+import { CustomerAccountDTO } from '../customerAccount/customer-account.dto';
 import BillingType from '../../enums/payment/billing-type';
 
 export interface CreatePaymentDTO {
-  customerAccount: CustomerAccountDTO,
+  customer: CustomerAccountDTO,
   billingType: BillingType,
   value: number,
   dueDate: string
