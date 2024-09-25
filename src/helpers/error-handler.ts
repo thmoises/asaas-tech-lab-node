@@ -10,6 +10,10 @@ const ERROR_PATTERN = {
     status: 404,
     message: 'Record not found.',
   },
+  [ErrorTypesEnum.ALREADY_EXISTS]: {
+    status: 400,
+    message: 'Record already exists.',
+  }
 };
 
 export const handleError = (
