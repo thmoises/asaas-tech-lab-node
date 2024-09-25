@@ -9,6 +9,7 @@ COPY package*.json ./
 
 # Instale as dependências do projeto
 RUN npm install
+RUN npm install --save-dev @types/uuid
 RUN npm install --save-dev @types/yup
 
 # Copie o restante do código da aplicação para o diretório de trabalho
