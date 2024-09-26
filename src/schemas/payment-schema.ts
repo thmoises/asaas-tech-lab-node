@@ -4,7 +4,7 @@ import BillingType from '../enums/payment/billing-type';
 const billingTypeValues = Object.values(BillingType).filter(value => typeof value === 'string');
 
 export const paymentSchema = yup.object().shape({
-  customerAccount: yup
+  customer: yup
     .object()
     .shape({
       name: yup.string().required('Customer account name is required'),

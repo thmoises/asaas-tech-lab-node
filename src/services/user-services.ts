@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import dataSource from '../models';
 import Services from './services';
 import Encoder from '../config/encoder';
-import { CreateUserDTO } from '../dtos/user/create-user.dto';
+import { UserRequestDTO } from '../dtos/user/user-request.dto';
 import { ErrorTypesEnum } from '../enums/error-types-enum';
 
 class UserServices extends Services {
@@ -12,7 +12,7 @@ class UserServices extends Services {
     super('User');
   }
 
-  public async save(data: CreateUserDTO) {
+  public async save(data: UserRequestDTO) {
     await this.validateUserCreation(data);
 
     const apiKey = uuidv4();
@@ -24,7 +24,7 @@ class UserServices extends Services {
     return dataSource['User'].findOne({ where: { email } });
   }
 
-  private async validateUserCreation(data: CreateUserDTO) {
+  private async validateUserCreation(data: UserRequestDTO) {
     const existingUser = await this.findByEmail(data.email);
     if (existingUser) throw new Error(ErrorTypesEnum.ALREADY_EXISTS);
   }
