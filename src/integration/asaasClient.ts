@@ -13,7 +13,7 @@ class AsaasClient {
 
   private baseUrl: string = 'https://sandbox.asaas.com/api/v3';
 
-  private apiKey: string = '$aact_YTU5YTE0M2M2N2I4MTliNzk0YTI5N2U5MzdjNWZmNDQ6OjAwMDAwMDAwMDAwMDAwOTAzMjg6OiRhYWNoX2NkZTYyM2QyLWRmMDEtNDhlZi05NWIxLWJhZjY4Mzg5OTA3NQ==';
+  private apiKey: string = 'YOUR_API_KEY';
 
   constructor() {
     this.axiosInstance = axios.create({
