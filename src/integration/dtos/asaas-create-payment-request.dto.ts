@@ -1,6 +1,6 @@
 import BillingType from '../../enums/payment/billing-type';
 
-export interface AsaasCreatePaymentRequest {
+export interface AsaasCreatePaymentRequestDTO {
   customer: string
   value: number
   dueDate: string

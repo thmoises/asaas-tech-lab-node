@@ -1,6 +1,6 @@
 import { PaymentRequestDTO } from '../dtos/payment/payment-request.dto';
 import AsaasClient from '../integration/asaasClient';
-import { AsaasCreatePaymentRequest } from '../integration/dtos/asaas-create-payment-request';
+import { AsaasCreatePaymentRequestDTO } from '../integration/dtos/asaas-create-payment-request.dto';
 import { PaymentResponseDTO } from '../dtos/payment/payment-response.dto';
 
 class PaymentServices {
@@ -13,7 +13,7 @@ class PaymentServices {
   async create(createPaymentDTO: PaymentRequestDTO): Promise<PaymentResponseDTO> {
     const customer = await this.asaasClient.createCustomer(createPaymentDTO.customer);
 
-    const asaasCreatePaymentRequest: AsaasCreatePaymentRequest = {
+    const asaasCreatePaymentRequest: AsaasCreatePaymentRequestDTO = {
       customer: customer,
       value: createPaymentDTO.value,
       dueDate: createPaymentDTO.dueDate,

@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosError } from 'axios';
-import { AsaasCreatePaymentRequest } from './dtos/asaas-create-payment-request';
+import { AsaasCreatePaymentRequestDTO } from './dtos/asaas-create-payment-request.dto';
 import { CustomerRequestDTO } from '../dtos/customer/customer-request.dto';
 import { PaymentResponseDTO } from '../dtos/payment/payment-response.dto';
 import { CustomerResponseDTO } from '../dtos/customer/customer-response.dto';
@@ -13,7 +13,7 @@ class AsaasClient {
 
   private baseUrl: string = 'https://sandbox.asaas.com/api/v3';
 
-  private apiKey: string = 'YOUR_API_KEY';
+  private apiKey: string = '$aact_YTU5YTE0M2M2N2I4MTliNzk0YTI5N2U5MzdjNWZmNDQ6OjAwMDAwMDAwMDAwMDAwOTAzMjg6OiRhYWNoX2YxYjkxMjg4LWViODYtNDc5OS05NjY5LWVlMDZkODk5ZDRjNA==';
 
   constructor() {
     this.axiosInstance = axios.create({
@@ -25,7 +25,7 @@ class AsaasClient {
     });
   }
 
-  public async createPayment(paymentRequest: AsaasCreatePaymentRequest): Promise<PaymentResponseDTO> {
+  public async createPayment(paymentRequest: AsaasCreatePaymentRequestDTO): Promise<PaymentResponseDTO> {
     try {
       const response = await this.axiosInstance.post<PaymentResponseDTO>('/payments', paymentRequest);
       return response.data;
