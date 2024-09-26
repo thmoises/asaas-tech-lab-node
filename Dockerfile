@@ -11,6 +11,7 @@ COPY package*.json ./
 RUN npm install
 RUN npm install --save-dev @types/uuid
 RUN npm install --save-dev @types/yup
+RUN npm install --save-dev @types/axios
 
 # Copie o restante do código da aplicação para o diretório de trabalho
 COPY . .
