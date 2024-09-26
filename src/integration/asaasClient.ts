@@ -1,15 +1,19 @@
-import axios, { AxiosInstance } from 'axios';
-import { CreatePaymentDTO } from '../dtos/payment/create-payment.dto';
-import { CustomerAccountDTO } from '../dtos/customerAccount/customer-account.dto';
+import axios, { AxiosInstance, AxiosError } from 'axios';
+import { AsaasCreatePaymentRequest } from './dtos/asaas-create-payment-request';
+import { CustomerRequestDTO } from '../dtos/customer/customer-request.dto';
 import { PaymentResponseDTO } from '../dtos/payment/payment-response.dto';
-import { CustomerAccountResponseDTO } from '../dtos/customerAccount/customer-account-response.dto';
+import { CustomerResponseDTO } from '../dtos/customer/customer-response.dto';
+
+interface AsaasError {
+  errors: { code: string; description: string }[];
+}
 
 class AsaasClient {
   private axiosInstance: AxiosInstance;
 
   private baseUrl: string = 'https://sandbox.asaas.com/api/v3';
 
-  private apiKey: string = '';
+  private apiKey: string = '$aact_YTU5YTE0M2M2N2I4MTliNzk0YTI5N2U5MzdjNWZmNDQ6OjAwMDAwMDAwMDAwMDAwOTAzMjg6OiRhYWNoX2NkZTYyM2QyLWRmMDEtNDhlZi05NWIxLWJhZjY4Mzg5OTA3NQ==';
 
   constructor() {
     this.axiosInstance = axios.create({
@@ -21,15 +25,29 @@ class AsaasClient {
     });
   }
 
-  public async createPayment(paymentRequest: CreatePaymentDTO): Promise<PaymentResponseDTO> {
-    const response = await this.axiosInstance.post<PaymentResponseDTO>('/payments', paymentRequest);
-    console.log(response.data);
-    return response.data;
+  public async createPayment(paymentRequest: AsaasCreatePaymentRequest): Promise<PaymentResponseDTO> {
+    try {
+      const response = await this.axiosInstance.post<PaymentResponseDTO>('/payments', paymentRequest);
+      return response.data;
+    } catch (error) {
+      throw new Error(this.handleError(error as AxiosError));
+    }
   }
 
-  public async createCustomer(customerAccountDTO: CustomerAccountDTO): Promise<string> {
-    const response = await this.axiosInstance.post<CustomerAccountResponseDTO>('/customers', customerAccountDTO);
-    return response.data.id;
+  public async createCustomer(customerDTO: CustomerRequestDTO): Promise<string> {
+    try {
+      const response = await this.axiosInstance.post<CustomerResponseDTO>('/customers', customerDTO);
+      return response.data.id;
+    } catch (error) {
+      throw new Error(this.handleError(error as AxiosError));
+    }
+  }
+
+  private handleError(error: AxiosError): string {
+    if (error.response && error.response.data && (error.response.data as AsaasError).errors) {
+      return (error.response.data as AsaasError).errors.map((err) => err.description).join(', ');
+    }
+    return 'An unexpected error occurred';
   }
 }
 
