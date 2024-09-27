@@ -25,7 +25,7 @@ const router = Router();
  *           schema:
  *             type: object
  *             properties:
- *               customerAccount:
+ *               customer:
  *                 type: object
  *                 properties:
  *                   name:
@@ -49,6 +49,10 @@ const router = Router();
  *                 format: date-time
  *                 description: Data de vencimento.
  *                 example: 2024-08-15T19:41:15.816Z
+ *               description:
+ *                 type: string
+ *                 description: Descrição do pagamento.
+ *                 example: Pagamento referente ao serviço X.
  *     responses:
  *       200:
  *         description: Registro criado com sucesso
@@ -60,25 +64,6 @@ const router = Router();
  *                 data:
  *                   type: object
  *                   properties:
- *                     id:
- *                       type: integer
- *                       description: ID.
- *                       example: 7
- *                     customerAccount:
- *                       type: object
- *                       properties:
- *                         name:
- *                           type: string
- *                           description: Nome do cliente.
- *                           example: John Doe
- *                         cpfCnpj:
- *                           type: string
- *                           description: CPF/CNPJ do cliente.
- *                           example: 12345678900
- *                     billingType:
- *                       type: string
- *                       description: Tipo de cobrança.
- *                       example: BOLETO
  *                     value:
  *                       type: number
  *                       description: Valor.
@@ -88,7 +73,23 @@ const router = Router();
  *                       format: date-time
  *                       description: Data de vencimento.
  *                       example: 2024-08-15T19:41:15.816Z
- *                 mensagem:
+ *                     description:
+ *                       type: string
+ *                       description: Descrição do pagamento.
+ *                       example: Pagamento referente ao serviço X.
+ *                     billingType:
+ *                       type: string
+ *                       description: Tipo de cobrança.
+ *                       example: BOLETO
+ *                     status:
+ *                       type: string
+ *                       description: Status do pagamento.
+ *                       example: PENDING
+ *                     customer:
+ *                       type: string
+ *                       description: ID do cliente.
+ *                       example: cus_000006227230
+ *                 message:
  *                   type: string
  *                   description: Mensagem de sucesso.
  *                   example: Record created successfully.

@@ -1,7 +1,7 @@
 import PaymentServices from '../services/payment-services';
 import { Request, Response } from 'express';
 import { handleError } from '../helpers/error-handler';
-import { CreatePaymentDTO } from '../dtos/payment/create-payment.dto';
+import { PaymentRequestDTO } from '../dtos/payment/payment-request.dto';
 import { paymentSchema } from '../schemas/payment-schema';
 import BillingType from '../enums/payment/billing-type';
 import CustomDateUtils from '../utils/date-utils';
@@ -15,8 +15,8 @@ class PaymentController {
     try {
       await paymentSchema.validate(body);
 
-      const paymentDto: CreatePaymentDTO = {
-        customerAccount: body.customerAccount,
+      const paymentDto: PaymentRequestDTO = {
+        customer: body.customer,
         billingType: body.billingType as BillingType,
         value: body.value,
         dueDate: CustomDateUtils.formatDate(new Date(body.dueDate))

@@ -2,7 +2,7 @@ import Controller from './controller';
 import UserServices from '../services/user-services';
 import { Request, Response } from 'express';
 import { handleError } from '../helpers/error-handler';
-import { CreateUserDTO } from '../dtos/user/create-user.dto';
+import { UserRequestDTO } from '../dtos/user/user-request.dto';
 import { createUserSchema } from '../schemas/user-schema';
 
 const userServices = new UserServices();
@@ -17,7 +17,7 @@ class UserController extends Controller {
       const body = req.body;
       await createUserSchema.validate(body, { abortEarly: false });
 
-      const createUserDTO: CreateUserDTO = { email: body.email };
+      const createUserDTO: UserRequestDTO = { email: body.email };
       const data = await userServices.save(createUserDTO);
 
       return res.status(200).json({ data, message: `Record created successfully.` });
