@@ -11,9 +11,9 @@ interface AsaasError {
 class AsaasClient {
   private axiosInstance: AxiosInstance;
 
-  private baseUrl: string = 'https://sandbox.asaas.com/api/v3';
+  private baseUrl: string = process.env.ASAAS_BASE_URL as string;
 
-  private apiKey: string = 'YOUR_API_KEY';
+  private apiKey: string = process.env.ASAAS_API_KEY as string;
 
   constructor() {
     this.axiosInstance = axios.create({
