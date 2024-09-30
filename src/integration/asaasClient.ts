@@ -38,21 +38,7 @@ class AsaasClient {
   public async listPayment(): Promise<PaymentListResponseDTO> {
     try {
       const response = await this.axiosInstance.get<PaymentListResponseDTO>('/payments');
-      const filteredData = response.data.data.map((item) => ({
-        value: item.value,
-        dueDate: item.dueDate,
-        description: item.description,
-        billingType: item.billingType,
-        status: item.status,
-        customer: item.customer,
-      }));
-
-      return {
-        totalCount: response.data.totalCount,
-        limit: response.data.limit,
-        offset: response.data.offset,
-        data: filteredData,
-      };
+      return response.data;
     } catch (error) {
       throw new Error(this.handleError(error as AxiosError));
     }

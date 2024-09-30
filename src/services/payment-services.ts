@@ -2,6 +2,7 @@ import { PaymentRequestDTO } from '../dtos/payment/payment-request.dto';
 import AsaasClient from '../integration/asaasClient';
 import { AsaasCreatePaymentRequestDTO } from '../integration/dtos/asaas-create-payment-request.dto';
 import { PaymentResponseDTO } from '../dtos/payment/payment-response.dto';
+import { PaymentListResponseDTO } from '../dtos/payment/payment-list-response.dto';
 
 class PaymentServices {
   private asaasClient: AsaasClient;
@@ -33,6 +34,27 @@ class PaymentServices {
     };
 
     return paymentResponse;
+  }
+
+  async findAll(): Promise<PaymentListResponseDTO> {
+    const response = await this.asaasClient.listPayment();
+    const filteredData = response.data.map((item) => ({
+      value: item.value,
+      dueDate: item.dueDate,
+      description: item.description,
+      billingType: item.billingType,
+      status: item.status,
+      customer: item.customer,
+    }));
+
+    const paymentListResponse = {
+      totalCount: response.totalCount,
+      limit: response.limit,
+      offset: response.offset,
+      data: filteredData,
+    };
+
+    return paymentListResponse;
   }
 }
 
