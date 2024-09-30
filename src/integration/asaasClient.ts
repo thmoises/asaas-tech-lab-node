@@ -3,6 +3,7 @@ import { AsaasCreatePaymentRequestDTO } from './dtos/asaas-create-payment-reques
 import { CustomerRequestDTO } from '../dtos/customer/customer-request.dto';
 import { PaymentResponseDTO } from '../dtos/payment/payment-response.dto';
 import { CustomerResponseDTO } from '../dtos/customer/customer-response.dto';
+import { PaymentListResponseDTO } from '../dtos/payment/payment-list-response.dto';
 
 interface AsaasError {
   errors: { code: string; description: string }[];
@@ -29,6 +30,29 @@ class AsaasClient {
     try {
       const response = await this.axiosInstance.post<PaymentResponseDTO>('/payments', paymentRequest);
       return response.data;
+    } catch (error) {
+      throw new Error(this.handleError(error as AxiosError));
+    }
+  }
+
+  public async listPayment(): Promise<PaymentListResponseDTO> {
+    try {
+      const response = await this.axiosInstance.get<PaymentListResponseDTO>('/payments');
+      const filteredData = response.data.data.map((item) => ({
+        value: item.value,
+        dueDate: item.dueDate,
+        description: item.description,
+        billingType: item.billingType,
+        status: item.status,
+        customer: item.customer,
+      }));
+
+      return {
+        totalCount: response.data.totalCount,
+        limit: response.data.limit,
+        offset: response.data.offset,
+        data: filteredData,
+      };
     } catch (error) {
       throw new Error(this.handleError(error as AxiosError));
     }
