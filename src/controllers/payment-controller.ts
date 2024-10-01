@@ -19,11 +19,21 @@ class PaymentController {
         customer: body.customer,
         billingType: body.billingType as BillingType,
         value: body.value,
-        dueDate: CustomDateUtils.formatDate(new Date(body.dueDate))
+        dueDate: CustomDateUtils.formatDate(new Date(body.dueDate)),
+        description: body.description
       };
 
       const data = await paymentServices.create(paymentDto);
       return res.status(200).json({ data, message: `Record created successfully.` });
+    } catch (error) {
+      return handleError(res, error);
+    }
+  }
+
+  async findAll(req: Request, res: Response) {
+    try {
+      const data = await paymentServices.findAll();
+      return res.status(200).json({ data });
     } catch (error) {
       return handleError(res, error);
     }
