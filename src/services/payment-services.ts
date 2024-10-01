@@ -37,24 +37,17 @@ class PaymentServices {
   }
 
   async findAll(): Promise<PaymentListResponseDTO> {
-    const response = await this.asaasClient.listPayment();
-    const filteredData = response.data.map((item) => ({
-      value: item.value,
-      dueDate: item.dueDate,
-      description: item.description,
-      billingType: item.billingType,
-      status: item.status,
-      customer: item.customer,
+    const { data, totalCount, limit, offset } = await this.asaasClient.listPayment();
+    const filteredData = data.map(({ value, dueDate, description, billingType, status, customer }) => ({
+      value,
+      dueDate,
+      description,
+      billingType,
+      status,
+      customer,
     }));
 
-    const paymentListResponse = {
-      totalCount: response.totalCount,
-      limit: response.limit,
-      offset: response.offset,
-      data: filteredData,
-    };
-
-    return paymentListResponse;
+    return { totalCount, limit, offset, data: filteredData };
   }
 }
 
