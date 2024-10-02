@@ -1,4 +1,4 @@
-# Asaas Tech Lab Hackathon - Java
+# Asaas Tech Lab Hackathon - Node
 
 Seja bem-vindo(a)! Neste hackathon, o seu objetivo é tentar implementar soluções para 3 desafios.
 
@@ -21,6 +21,8 @@ willevini
 ## Pré-requisitos
 
 Para o desenvolvimento do projeto, existe um arquivo docker-compose.yml que sobe a aplicação já nas versões testadas de Node e npm.
+<br>
+**Nota**: Lembre-se de definir a variável de ambiente `ASAAS_API_KEY` nas variáveis de ambiente do docker-compose.yml.
 <br><br>
 O template utiliza Express na versão 4.19.2, ORM Sequelize na versão 6.32.1 e SQLite3 na versão 5.1.6.
 <br>
@@ -151,7 +153,12 @@ npx sequelize-cli db:seed:all
 
 **Desafio 2: Fazer uma rotina de transferências automáticas no Asaas**
 - O desafio é criar um Job que irá realizar transferências automáticas diariamente às 8h e 12h
-- A aplicação deve realizar a integração com o Asaas, receber pagamentos de cobranças e realizar a transferência para outra conta via Pix
+- A aplicação deve integrar-se com o Asaas, receber pagamentos de cobranças e realizar a transferência para outra conta (chaves abaixo) via Pix:
+  - 'c4c52a44-070e-454a-8417-3cc312986a68'
+  - '524d069f-7b61-425b-a211-6cb3ad4ba1b5'
+  - 'c2a81e71-a138-4e34-985e-a5abea4cd0f5'
+  - '942c4a99-770b-40ac-9068-f152a0adc532'
+  - '95f80f23-bf81-4d9c-9090-a16caa18f17e'
 - Verificar saldo e realizar transferências apenas se tiver saldo positivo
 
 **Desafio 3: Aplicar idempotência**
