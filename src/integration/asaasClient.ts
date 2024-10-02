@@ -48,10 +48,8 @@ class AsaasClient {
   public async retrieveSinglePayment(id: string): Promise<retrieveSinglePaymentDTO> {
     try {
       const response = await this.axiosInstance.get<retrieveSinglePaymentDTO>(`/payments/${id}`);
-      console.log(response);
       return <retrieveSinglePaymentDTO>response.data;
     } catch (error) {
-      console.log(error);
       throw new Error(this.handleError(error as AxiosError));
     }
   }
