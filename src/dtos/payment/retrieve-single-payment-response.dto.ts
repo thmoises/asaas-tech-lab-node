@@ -1,4 +1,4 @@
-export interface retrieveSinglePaymentDTO {
+export interface RetrieveSinglePaymentResponseDTO {
   object: string;
   id: string;
   dateCreated: string;

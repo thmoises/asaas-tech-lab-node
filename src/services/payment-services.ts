@@ -3,7 +3,7 @@ import AsaasClient from '../integration/asaasClient';
 import { AsaasCreatePaymentRequestDTO } from '../integration/dtos/asaas-create-payment-request.dto';
 import { PaymentResponseDTO } from '../dtos/payment/payment-response.dto';
 import { PaymentListResponseDTO } from '../dtos/payment/payment-list-response.dto';
-import { retrieveSinglePaymentDTO } from '../dtos/payment/retrieve-single-payment.dto';
+import { RetrieveSinglePaymentResponseDTO } from '../dtos/payment/retrieve-single-payment-response.dto';
 
 class PaymentServices {
   private asaasClient: AsaasClient;
@@ -51,7 +51,7 @@ class PaymentServices {
     return { totalCount, limit, offset, data: filteredData };
   }
 
-  async getById(id: string): Promise<retrieveSinglePaymentDTO> {
+  async getById(id: string): Promise<RetrieveSinglePaymentResponseDTO> {
     return await this.asaasClient.retrieveSinglePayment(id);
   }
 }
