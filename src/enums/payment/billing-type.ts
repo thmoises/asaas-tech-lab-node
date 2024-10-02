@@ -1,7 +1,7 @@
 enum BillingType {
   BOLETO,
   CREDIT_CARD,
-  PIX
+  PIX,
 }
 
 export default BillingType;

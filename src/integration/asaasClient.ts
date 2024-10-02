@@ -1,76 +1,76 @@
-import axios, {AxiosInstance, AxiosError} from 'axios';
-import {AsaasCreatePaymentRequestDTO} from './dtos/asaas-create-payment-request.dto';
-import {CustomerRequestDTO} from '../dtos/customer/customer-request.dto';
-import {PaymentResponseDTO} from '../dtos/payment/payment-response.dto';
-import {CustomerResponseDTO} from '../dtos/customer/customer-response.dto';
-import {PaymentListResponseDTO} from '../dtos/payment/payment-list-response.dto';
-import {retrieveSinglePaymentDTO} from "../dtos/payment/retrieve-single-payment.dto";
+import axios, { AxiosInstance, AxiosError } from 'axios';
+import { AsaasCreatePaymentRequestDTO } from './dtos/asaas-create-payment-request.dto';
+import { CustomerRequestDTO } from '../dtos/customer/customer-request.dto';
+import { PaymentResponseDTO } from '../dtos/payment/payment-response.dto';
+import { CustomerResponseDTO } from '../dtos/customer/customer-response.dto';
+import { PaymentListResponseDTO } from '../dtos/payment/payment-list-response.dto';
+import { retrieveSinglePaymentDTO } from '../dtos/payment/retrieve-single-payment.dto';
 
 interface AsaasError {
-    errors: { code: string; description: string }[];
+  errors: { code: string; description: string }[];
 }
 
 class AsaasClient {
-    private axiosInstance: AxiosInstance;
+  private axiosInstance: AxiosInstance;
 
-    private baseUrl: string = process.env.ASAAS_BASE_URL as string;
+  private baseUrl: string = process.env.ASAAS_BASE_URL as string;
 
-    private apiKey: string = process.env.ASAAS_API_KEY as string;
+  private apiKey: string = process.env.ASAAS_API_KEY as string;
 
-    constructor() {
-        this.axiosInstance = axios.create({
-            baseURL: this.baseUrl,
-            headers: {
-                'access_token': this.apiKey,
-                'Content-Type': 'application/json',
-            },
-        });
+  constructor() {
+    this.axiosInstance = axios.create({
+      baseURL: this.baseUrl,
+      headers: {
+        access_token: this.apiKey,
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  public async createPayment(paymentRequest: AsaasCreatePaymentRequestDTO): Promise<PaymentResponseDTO> {
+    try {
+      const response = await this.axiosInstance.post<PaymentResponseDTO>('/payments', paymentRequest);
+      return <PaymentResponseDTO>response.data;
+    } catch (error) {
+      throw new Error(this.handleError(error as AxiosError));
     }
+  }
 
-    public async createPayment(paymentRequest: AsaasCreatePaymentRequestDTO): Promise<PaymentResponseDTO> {
-        try {
-            const response = await this.axiosInstance.post<PaymentResponseDTO>('/payments', paymentRequest);
-            return <PaymentResponseDTO>response.data;
-        } catch (error) {
-            throw new Error(this.handleError(error as AxiosError));
-        }
+  public async listPayment(): Promise<PaymentListResponseDTO> {
+    try {
+      const response = await this.axiosInstance.get<PaymentListResponseDTO>('/payments');
+      return <PaymentListResponseDTO>response.data;
+    } catch (error) {
+      throw new Error(this.handleError(error as AxiosError));
     }
+  }
 
-    public async listPayment(): Promise<PaymentListResponseDTO> {
-        try {
-            const response = await this.axiosInstance.get<PaymentListResponseDTO>('/payments');
-            return <PaymentListResponseDTO>response.data;
-        } catch (error) {
-            throw new Error(this.handleError(error as AxiosError));
-        }
+  public async retrieveSinglePayment(id: string): Promise<retrieveSinglePaymentDTO> {
+    try {
+      const response = await this.axiosInstance.get<retrieveSinglePaymentDTO>(`/payments/${id}`);
+      console.log(response);
+      return <retrieveSinglePaymentDTO>response.data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(this.handleError(error as AxiosError));
     }
+  }
 
-    public async retrieveSinglePayment(id: string): Promise<retrieveSinglePaymentDTO> {
-        try {
-            const response = await this.axiosInstance.get<retrieveSinglePaymentDTO>(`/payments/${id}`);
-            console.log(response)
-            return <retrieveSinglePaymentDTO>response.data;
-        } catch (error) {
-            console.log(error)
-            throw new Error(this.handleError(error as AxiosError));
-        }
+  public async createCustomer(customerDTO: CustomerRequestDTO): Promise<string> {
+    try {
+      const response = await this.axiosInstance.post<CustomerResponseDTO>('/customers', customerDTO);
+      return response.data.id;
+    } catch (error) {
+      throw new Error(this.handleError(error as AxiosError));
     }
+  }
 
-    public async createCustomer(customerDTO: CustomerRequestDTO): Promise<string> {
-        try {
-            const response = await this.axiosInstance.post<CustomerResponseDTO>('/customers', customerDTO);
-            return response.data.id;
-        } catch (error) {
-            throw new Error(this.handleError(error as AxiosError));
-        }
+  private handleError(error: AxiosError): string {
+    if (error.response && error.response.data && (error.response.data as AsaasError).errors) {
+      return (error.response.data as AsaasError).errors.map((err) => err.description).join(', ');
     }
-
-    private handleError(error: AxiosError): string {
-        if (error.response && error.response.data && (error.response.data as AsaasError).errors) {
-            return (error.response.data as AsaasError).errors.map((err) => err.description).join(', ');
-        }
-        return 'An unexpected error occurred';
-    }
+    return 'An unexpected error occurred';
+  }
 }
 
 export default AsaasClient;

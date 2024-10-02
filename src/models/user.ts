@@ -25,6 +25,6 @@ const User = (sequelize: Sequelize) => {
   );
 
   return CUser;
-}
+};
 
 export default User;
