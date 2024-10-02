@@ -4,4 +4,4 @@ class CustomDateUtils {
   }
 }
 
-export default CustomDateUtils
+export default CustomDateUtils;

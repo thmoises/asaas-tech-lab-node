@@ -13,7 +13,7 @@ const ERROR_PATTERN = {
   [ErrorTypesEnum.ALREADY_EXISTS]: {
     status: 400,
     message: 'Record already exists.',
-  }
+  },
 };
 
 export const handleError = (

@@ -20,7 +20,7 @@ class PaymentController {
         billingType: body.billingType as BillingType,
         value: body.value,
         dueDate: CustomDateUtils.formatDate(new Date(body.dueDate)),
-        description: body.description
+        description: body.description,
       };
 
       const data = await paymentServices.create(paymentDto);
@@ -34,6 +34,16 @@ class PaymentController {
     try {
       const data = await paymentServices.findAll();
       return res.status(200).json({ data });
+    } catch (error) {
+      return handleError(res, error);
+    }
+  }
+
+  async getById(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      const data = await paymentServices.getById(id);
+      return res.status(200).json(data);
     } catch (error) {
       return handleError(res, error);
     }
