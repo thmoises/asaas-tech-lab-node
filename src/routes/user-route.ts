@@ -6,8 +6,15 @@ const userController = new UserController();
 const router = Router();
 
 /**
+* @swagger
+* tags:
+*   name: User
+*   description: Gerenciamento de usuários
+*/
+
+/**
  * @swagger
- * /user:
+ * /users:
  *   post:
  *     tags: [User]
  *     summary: Cria um registro de usuário

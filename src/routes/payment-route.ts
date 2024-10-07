@@ -73,7 +73,7 @@ router.get('/payments', (req: Request, res: Response) => paymentController.findA
 
 /**
  * @swagger
- * /payment/{id}:
+ * /payments/{id}:
  *   get:
  *     summary: Retorna um registro de pagamento pelo ID
  *     tags: [Payment]
@@ -299,7 +299,7 @@ router.get('/payments/:id', (req: Request, res: Response) => paymentController.g
 
 /**
  * @swagger
- * /payment:
+ * /payments:
  *   post:
  *     summary: Cria um registro de pagamento
  *     tags: [Payment]
