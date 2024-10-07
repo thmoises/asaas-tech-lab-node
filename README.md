@@ -67,20 +67,20 @@ router.get('/test', (req: Request, res: Response) => testController.findAll(req,
 Link para documentacao do Swagger utilizado: https://github.com/Surnet/swagger-jsdoc/blob/v5/docs/GETTING-STARTED.md 
 
 ### Subindo a aplicação
-Para subir a aplicação, basta rodar o comando `docker-compose up -d` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 3000.
+Para subir a aplicação, basta rodar o comando `docker-compose up -d` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
 <br><br>
 Para rodar as migrações e seeds:
 
 ```bash
-docker-compose exec app bash
+docker-compose exec tech-lab-app bash
 npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
 ```
 ou
 
 ```bash
-docker-compose exec app npx sequelize-cli db:migrate
-docker-compose exec app npx sequelize-cli db:seed:all
+docker-compose exec tech-lab-app npx sequelize-cli db:migrate
+docker-compose exec tech-lab-app npx sequelize-cli db:seed:all
 ```
 
 <br>

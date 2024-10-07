@@ -1,14 +1,25 @@
 version: '3.8'
 
 services:
-  app:
+  tech-lab-app:
     build: .
     ports:
-      - "3000:3000"
+      - "8080:8080"
     volumes:
       - .:/app
       - /app/node_modules
     environment:
       - NODE_ENV=development
       - ASAAS_BASE_URL=https://sandbox.asaas.com/api/v3
-      - ASAAS_API_KEY=$<YOUR_API_KEY>
+      - ASAAS_API_KEY=<YOUR_API_KEY>
+    deploy:
+      resources:
+        limits:
+          cpus: "0.45"
+          memory: "220MB"
+
+  k6:
+    image: grafana/k6
+    volumes:
+      - ./asaas-tech-lab-test:/scripts
+    entrypoint: ["k6", "run", "/scripts/tests-script.js"]
