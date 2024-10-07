@@ -13,8 +13,24 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: 'http://localhost:3000',
+      url: 'http://localhost:8080',
       description: 'Development server',
+    },
+  ],
+  components: {
+    securitySchemes: {
+        Authorization: {
+            type: 'apiKey',
+            in: 'header',
+            name: 'Authorization',
+            scheme: 'bearer',
+            bearerFormat: 'JWT',
+        },
+    },
+  },
+  security: [
+    {
+        Authorization: [],
     },
   ],
 };

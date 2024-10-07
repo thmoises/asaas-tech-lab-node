@@ -17,7 +17,7 @@ RUN npm install --save-dev @types/axios
 COPY . .
 
 # Exponha a porta que a aplicação irá rodar
-EXPOSE 3000
+EXPOSE 8080
 
 # Comando para rodar a aplicação
 CMD ["npm", "run", "start"]
