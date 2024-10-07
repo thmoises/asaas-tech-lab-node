@@ -6,11 +6,11 @@ const userController = new UserController();
 const router = Router();
 
 /**
-* @swagger
-* tags:
-*   name: User
-*   description: Gerenciamento de usuários
-*/
+ * @swagger
+ * tags:
+ *   name: User
+ *   description: Gerenciamento de usuários
+ */
 
 /**
  * @swagger
