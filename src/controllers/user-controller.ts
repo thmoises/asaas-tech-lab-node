@@ -25,14 +25,6 @@ class UserController extends Controller {
       return handleError(res, error);
     }
   }
-
-  async update(req: Request, res: Response) {
-    return res.status(501).json({ message: 'Not Implemented' });
-  }
-
-  async delete(req: Request, res: Response) {
-    return res.status(501).json({ message: 'Not Implemented' });
-  }
 }
 
 export default UserController;

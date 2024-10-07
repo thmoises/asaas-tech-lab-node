@@ -295,7 +295,7 @@ router.get('/payments', (req: Request, res: Response) => paymentController.findA
  *                   description: Mensagem de erro.
  *                   example: Payment record not found.
  */
-router.get('/payment/:id', (req: Request, res: Response) => paymentController.getById(req, res));
+router.get('/payments/:id', (req: Request, res: Response) => paymentController.getById(req, res));
 
 /**
  * @swagger
@@ -379,6 +379,6 @@ router.get('/payment/:id', (req: Request, res: Response) => paymentController.ge
  *                   description: Mensagem de sucesso.
  *                   example: Record created successfully.
  */
-router.post('/payment', (req: Request, res: Response) => paymentController.create(req, res));
+router.post('/payments', (req: Request, res: Response) => paymentController.create(req, res));
 
 export default router;
