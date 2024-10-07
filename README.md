@@ -29,44 +29,13 @@ O template utiliza Express na versão 4.19.2, ORM Sequelize na versão 6.32.1 e 
 Link para a documentação do Sequelize utilizado: https://sequelize.org/docs/v6/
 <br><br>
 O Swagger foi habilitado, então, ao definir uma rota através da anotação `@swagger`, é possível gerar a documentação da API.<br> 
-Também é possível acessar a documentação na URL `/docs` e fazer os testes. Exemplo:
-
-```typescript
-/**
- * @swagger
- * /test:
- *   get:
- *     summary: Retorna a lista dos registros testes
- *     responses:
- *       200:
- *         description: Lista de registros testes
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 data:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         description: ID.
- *                         example: 1
- *                       name:
- *                         type: string
- *                         description: Name.
- *                         example: Sou um teste
- */
-router.get('/test', (req: Request, res: Response) => testController.findAll(req, res));
-```
-
+Também é possível acessar a documentação na URL `/docs` e fazer os testes.
 <br>
 
 Link para documentacao do Swagger utilizado: https://github.com/Surnet/swagger-jsdoc/blob/v5/docs/GETTING-STARTED.md 
 
 ### Subindo a aplicação
+
 Para subir a aplicação, basta rodar o comando `docker-compose up -d` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
 <br><br>
 Para rodar as migrações e seeds:
@@ -137,41 +106,90 @@ npx sequelize-cli db:seed:all
 ├── `server.ts` <br>
 └── `tsconfig.json` Configurações do TypeScript <br>
 
+### Banco de dados
+
+O projeto utiliza o SQLite, criado após a primeira execução do projeto, você pode acessa-lo por meio do seu editor preferido pelo arquivo database.sqlite localizado na raiz do projeto.
+
+Sugestão de editores:
+
+- Database connections do Intellij
+- Sqlite Studio: https://sqlitestudio.pl/
+
+### Testes
+
+Para executar os testes dos desafios, execute o comando ``git submodule update --init`` para obter o script de testes que serão usados como parte da avaliação da sua solução.
+
+Na pasta raiz do projeto, execute:
+
+- ``docker-compose up``: para subir a aplicação
+- ``docker-compose run --rm k6``: Executar os testes
+
+### Autenticação API
+Para se autenticar na API, é necessário realizar o envio do Authorization no header da requisição com o token JWT do usuário que deseja se autenticar. Caso contrário, a API retornará status code 401.
+
+- Usuário: user1@example.com
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTFAZ21haWwuY29tIn0.aPbhx4QONeubDyPUoYHh9zlGU6LgyucX0TMIJjBjVO4`
+
+
+- Usuário: user2@example.com
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTJAZ21haWwuY29tIn0.rFBzQV06yvBBWESoOIEQXY6SoaM--CCS-HRePYSVJho`
+
+
+- Usuário: user3@example.com
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTNAZ21haWwuY29tIn0.UZKhBxWjHSwAXq8_aYgVePo91eVPCeE90uJ7RRa0_IY`
+
+
+- Usuário: user4@example.com
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTRAZ21haWwuY29tIn0.82T4JpF5O2ek3WElqZod6kGr4zerdiHoVqhH_Po1HzI`
+
+
+- Usuário: user5example.com
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTVAZ21haWwuY29tIn0.DGiOVtLcka2oJsKdsmLPOKZpZIuCf432TrNi-_pJCb0`
+
+Exemplo de requisição:
+```bash
+curl --request GET \
+  --url http://localhost:8080/payments \
+  --header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTFAZ21haWwuY29tIn0.aPbhx4QONeubDyPUoYHh9zlGU6LgyucX0TMIJjBjVO4' \
+  --cookie JSESSIONID=FEFEFBE88B9D77DC2DD1A35592005F24
+```
 
 ## Desafios
 
 **Desafio 1: Adicionar rate-limit, burst e quota na API**
-- O desafio consiste em receber uma alta carga de chamados na API e adicionar os limites
-- A aplicação deve realizar bloqueios baseado nas regras definidas
-- É interessante criar um endpoint para resetar os limites
+
+O desafio consiste em receber uma alta carga de chamados na API e adicionar os limites. A aplicação deve realizar bloqueios baseado nas regras definidas:
+
 - Rate-limit
-  - máximo de 100 requisições por minuto nos endpoints de Lista cobranças e Recuperar uma única cobrança
-- Burst (semáforo)
-  - máximo de 10 requisições paralelas no endpoint de Criar cobrança
-- Quota (semáforo)
-  - verificar limites diários configurados para cada usuário para limitar o número de cobranças criadas por dia
+  - máximo de 100 requisições por minuto **por IP** nos endpoints de Listar cobranças e Recuperar uma única cobrança
+  - o Ip deverá ser enviado via header na request como `remote-ip` para que seja possível simular diferentes IPs
+- Burst
+  - máximo de 10 requisições paralelas **por IP** no endpoint de Criar cobrança
+  - o Ip deverá ser enviado via header na request como `remote-ip` para que seja possível simular diferentes IPs
+- Quota
+  - verificar limites diários configurados para cada usuário afim de limitar o quantidade de acessos ao endpoint de criação de cobrança
 
 **Desafio 2: Fazer uma rotina de transferências automáticas no Asaas**
 - O desafio é criar um Job que irá realizar transferências automáticas diariamente às 8h e 12h
-- A aplicação deve integrar-se com o Asaas, receber pagamentos de cobranças e realizar a transferência para outra conta (chaves abaixo) via Pix:
-  - 'c4c52a44-070e-454a-8417-3cc312986a68'
-  - '524d069f-7b61-425b-a211-6cb3ad4ba1b5'
-  - 'c2a81e71-a138-4e34-985e-a5abea4cd0f5'
-  - '942c4a99-770b-40ac-9068-f152a0adc532'
-  - '95f80f23-bf81-4d9c-9090-a16caa18f17e'
-- Verificar saldo e realizar transferências apenas se tiver saldo positivo
+- A aplicação deve integrar-se com o Asaas e realizar a transferência para uma das chave PIX abaixo:
+  - `c4c52a44-070e-454a-8417-3cc312986a68`
+  - `524d069f-7b61-425b-a211-6cb3ad4ba1b5`
+  - `c2a81e71-a138-4e34-985e-a5abea4cd0f5`
+  - `942c4a99-770b-40ac-9068-f152a0adc532`
+  - `95f80f23-bf81-4d9c-9090-a16caa18f17e`
+- Verificar o saldo e realizar transferências apenas se tiver saldo positivo
 
 **Desafio 3: Aplicar idempotência**
-- Fazer com que o controller de cobranças seja idempotente
+- Fazer com que a rotina de criação de cobranças seja idempotente através de uma chave de idempotência informada no header da requisição utilizando a sintaxe `Idempotency-Key`: `value`
 
 ## O que será avaliado?
+
+Você está trabalhando em uma aplicação em um ambiente produtivo, altamente escalável e que realiza múltiplos deploys diários. Diante disso, é necessário desenvolver uma solução definitiva, sem recorrer a paliativos ou medidas temporárias, garantindo a estabilidade e a eficiência contínua do sistema.
+
 - Desempenho da aplicação
   - O código teve um bom desempenho?
   - As respostas foram rápidas?
   - O teste de desempenho trouxe quais resultados?
-- Código funcional
-  - É possível rodar o código de uma forma fácil?
-  - Não é necessário instalar nenhuma ferramenta extra?
 - Boas práticas
   - O código usou boas práticas de desenvolvimento de software?
 - Organização
