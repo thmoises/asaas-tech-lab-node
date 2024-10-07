@@ -1,13 +1,10 @@
-import { v4 as uuidv4 } from 'uuid';
 import dataSource from '../models';
 import Services from './services';
-import Encoder from '../config/encoder';
 import { UserRequestDTO } from '../dtos/user/user-request.dto';
 import { ErrorTypesEnum } from '../enums/error-types-enum';
+import { generateToken } from '../config/auth';
 
 class UserServices extends Services {
-  private apiKeyEncoder = Encoder;
-
   constructor() {
     super('User');
   }
@@ -15,9 +12,7 @@ class UserServices extends Services {
   public async save(data: UserRequestDTO) {
     await this.validateUserCreation(data);
 
-    const apiKey = uuidv4();
-    const encodedApiKey = await this.apiKeyEncoder.encode(apiKey);
-    return this.create({ ...data, apiKey: encodedApiKey });
+    return this.create({ ...data, apiKey: generateToken(data.email) });
   }
 
   public async findByEmail(email: string) {
