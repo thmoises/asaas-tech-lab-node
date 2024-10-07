@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import PaymentController from '../controllers/payment-controller';
+import { authMiddleware } from '../middleware/auth-middleware';
 
 const paymentController = new PaymentController();
 
@@ -69,7 +70,7 @@ const router = Router();
  *                         description: ID do cliente.
  *                         example: cus_000006227230
  */
-router.get('/payments', (req: Request, res: Response) => paymentController.findAll(req, res));
+router.get('/payments', authMiddleware, (req: Request, res: Response) => paymentController.findAll(req, res));
 
 /**
  * @swagger
@@ -295,7 +296,7 @@ router.get('/payments', (req: Request, res: Response) => paymentController.findA
  *                   description: Mensagem de erro.
  *                   example: Payment record not found.
  */
-router.get('/payments/:id', (req: Request, res: Response) => paymentController.getById(req, res));
+router.get('/payments/:id', authMiddleware, (req: Request, res: Response) => paymentController.getById(req, res));
 
 /**
  * @swagger
@@ -379,6 +380,6 @@ router.get('/payments/:id', (req: Request, res: Response) => paymentController.g
  *                   description: Mensagem de sucesso.
  *                   example: Record created successfully.
  */
-router.post('/payments', (req: Request, res: Response) => paymentController.create(req, res));
+router.post('/payments', authMiddleware, (req: Request, res: Response) => paymentController.create(req, res));
 
 export default router;
