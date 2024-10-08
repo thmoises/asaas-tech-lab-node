@@ -128,29 +128,29 @@ Na pasta raiz do projeto, execute:
 Para se autenticar na API, é necessário realizar o envio do Authorization no header da requisição com o token JWT do usuário que deseja se autenticar. Caso contrário, a API retornará status code 401.
 
 - Usuário: user1@example.com
-- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTFAZ21haWwuY29tIn0.aPbhx4QONeubDyPUoYHh9zlGU6LgyucX0TMIJjBjVO4`
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyMUBleGFtcGxlLmNvbSJ9.5DK2w70WyEtf4HzBPXqsHfO8xoY30CG8rO0QQ5BQGZg`
 
 
 - Usuário: user2@example.com
-- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTJAZ21haWwuY29tIn0.rFBzQV06yvBBWESoOIEQXY6SoaM--CCS-HRePYSVJho`
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyMkBleGFtcGxlLmNvbSJ9.20lKVN-pzmT8teJwCjH07Ebm2r-tkoY5POxkioy7Ie0`
 
 
 - Usuário: user3@example.com
-- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTNAZ21haWwuY29tIn0.UZKhBxWjHSwAXq8_aYgVePo91eVPCeE90uJ7RRa0_IY`
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyM0BleGFtcGxlLmNvbSJ9.pv5Y7HIqjloZtlMfVKwTMXv1IWQ7JA0Cl6iMLVmzvDQ`
 
 
 - Usuário: user4@example.com
-- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTRAZ21haWwuY29tIn0.82T4JpF5O2ek3WElqZod6kGr4zerdiHoVqhH_Po1HzI`
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyNEBleGFtcGxlLmNvbSJ9.XWTnHFbUZtTT5azD7ByadrLs42dM4vbsrQFvVZcq6m4`
 
 
 - Usuário: user5example.com
-- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTVAZ21haWwuY29tIn0.DGiOVtLcka2oJsKdsmLPOKZpZIuCf432TrNi-_pJCb0`
+- `Authorization`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyNUBleGFtcGxlLmNvbSJ9.G7UAkWKqtHOUxvW7zvqpMA9kjYk0uNZuEVMGkKHpBK8`
 
 Exemplo de requisição:
 ```bash
 curl --request GET \
   --url http://localhost:8080/payments \
-  --header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb250YTFAZ21haWwuY29tIn0.aPbhx4QONeubDyPUoYHh9zlGU6LgyucX0TMIJjBjVO4' \
+  --header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyMUBleGFtcGxlLmNvbSJ9.5DK2w70WyEtf4HzBPXqsHfO8xoY30CG8rO0QQ5BQGZg' \
   --cookie JSESSIONID=FEFEFBE88B9D77DC2DD1A35592005F24
 ```
 
