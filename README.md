@@ -38,7 +38,7 @@ Link para documentacao do Swagger utilizado: https://github.com/Surnet/swagger-j
 
 Para subir a aplicação, basta rodar o comando `docker-compose up -d` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
 <br><br>
-Para rodar as migrações e seeds:
+Ao subir o Docker, os comandos do Sequelize já são executados. Porém, se for necessário rodar manualmente as migrações e seeds, será da seguinte forma:
 
 ```bash
 docker-compose exec tech-lab-app bash

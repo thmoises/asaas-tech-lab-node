@@ -13,7 +13,7 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
 
     if (!user.dataValues || !Object.keys(user.dataValues).length) return res.status(403).end();
 
-    (req as unknown).user = user.dataValues as Record<string, unknown>;
+    (req as any).user = user.dataValues as Record<string, unknown>;
     next();
   } catch {
     res.status(403).end();
