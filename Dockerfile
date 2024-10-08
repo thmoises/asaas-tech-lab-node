@@ -8,10 +8,10 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instale as dependências do projeto
-RUN npm install
-RUN npm install --save-dev @types/uuid
+RUN npm install --legacy-peer-deps
 RUN npm install --save-dev @types/yup
 RUN npm install --save-dev @types/axios
+RUN npm install --save-dev @types/jsonwebtoken
 
 # Copie o restante do código da aplicação para o diretório de trabalho
 COPY . .
