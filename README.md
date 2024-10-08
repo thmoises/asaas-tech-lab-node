@@ -24,7 +24,7 @@ Para o desenvolvimento do projeto, existe um arquivo docker-compose.yml que sobe
 <br>
 **Nota**: Lembre-se de definir a variável de ambiente `ASAAS_API_KEY` nas variáveis de ambiente do docker-compose.yml.
 <br><br>
-O template utiliza Express na versão 4.19.2, ORM Sequelize na versão 6.32.1 e SQLite3 na versão 5.1.6.
+O template utiliza Express na versão 4.21.0, ORM Sequelize na versão 6.32.1 e SQLite3 na versão 5.1.6.
 <br>
 Link para a documentação do Sequelize utilizado: https://sequelize.org/docs/v6/
 <br><br>
