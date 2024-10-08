@@ -24,7 +24,7 @@ Para o desenvolvimento do projeto, existe um arquivo docker-compose.yml que sobe
 <br>
 **Nota**: Lembre-se de definir a variável de ambiente `ASAAS_API_KEY` nas variáveis de ambiente do docker-compose.yml.
 <br><br>
-O template utiliza Express na versão 4.19.2, ORM Sequelize na versão 6.32.1 e SQLite3 na versão 5.1.6.
+O template utiliza Express na versão 4.21.0, ORM Sequelize na versão 6.32.1 e SQLite3 na versão 5.1.6.
 <br>
 Link para a documentação do Sequelize utilizado: https://sequelize.org/docs/v6/
 <br><br>
@@ -36,7 +36,7 @@ Link para documentacao do Swagger utilizado: https://github.com/Surnet/swagger-j
 
 ### Subindo a aplicação
 
-Para subir a aplicação, basta rodar o comando `docker-compose up -d` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
+Para subir a aplicação, basta rodar o comando `docker-compose up -d --build tech-lab-app` na raiz do projeto. Ao subir, a aplicação estará disponível na porta 8080.
 <br><br>
 Ao subir o Docker, os comandos do Sequelize já são executados. Porém, se for necessário rodar manualmente as migrações e seeds, será da seguinte forma:
 
@@ -121,7 +121,7 @@ Para executar os testes dos desafios, execute o comando ``git submodule update -
 
 Na pasta raiz do projeto, execute:
 
-- ``docker-compose up``: para subir a aplicação
+- ``docker-compose up --build tech-lab-app``: para subir a aplicação
 - ``docker-compose run --rm k6``: Executar os testes
 
 ### Autenticação API
