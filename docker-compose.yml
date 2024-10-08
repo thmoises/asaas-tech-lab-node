@@ -7,11 +7,12 @@ services:
       - "8080:8080"
     volumes:
       - .:/app
-      - /app/node_modules
+      - ./node_modules:/app/node_modules
     environment:
       - NODE_ENV=development
       - ASAAS_BASE_URL=https://sandbox.asaas.com/api/v3
-      - ASAAS_API_KEY=<YOUR_API_KEY>
+      - ASAAS_API_KEY=$<YOUR_API_KEY>
+    command: sh -c "npm install --legacy-peer-deps && npx sequelize-cli db:migrate || true && npx sequelize-cli db:seed:all || true && npm run start"
     deploy:
       resources:
         limits:
