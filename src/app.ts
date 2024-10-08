@@ -19,18 +19,18 @@ const swaggerDefinition = {
   ],
   components: {
     securitySchemes: {
-      Authorization: {
-        type: 'apiKey',
-        in: 'header',
-        name: 'Authorization',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      },
+        Authorization: {
+            type: 'apiKey',
+            in: 'header',
+            name: 'Authorization',
+            scheme: 'bearer',
+            bearerFormat: 'JWT',
+        },
     },
   },
   security: [
     {
-      Authorization: [],
+        Authorization: [],
     },
   ],
 };
