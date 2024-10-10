@@ -161,7 +161,7 @@ curl --request GET \
 O desafio consiste em receber uma alta carga de chamados na API e adicionar os limites. A aplicação deve realizar bloqueios baseado nas regras definidas:
 
 - Rate-limit
-  - máximo de 100 requisições por minuto **por IP** nos endpoints de Listar cobranças e Recuperar uma única cobrança
+  - máximo de 10 requisições por minuto **por IP** nos endpoints de Listar cobranças e Recuperar uma única cobrança
   - o Ip deverá ser enviado via header na request como `remote-ip` para que seja possível simular diferentes IPs
 - Burst
   - máximo de 10 requisições paralelas **por IP** no endpoint de Criar cobrança
