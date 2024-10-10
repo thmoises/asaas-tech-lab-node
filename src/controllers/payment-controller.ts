@@ -13,8 +13,6 @@ const paymentServices = new PaymentServices();
 const customBurstUtils = new CustomBurstUtils();
 const dailyUseUtils = new CustomDailyUseUtils();
 
-//const redisURL = 'localhost:6379';
-//const burstControll: any[] = [];
 
 class PaymentController {
   async create(req: Request, res: Response) {
