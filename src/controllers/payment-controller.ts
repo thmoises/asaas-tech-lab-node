@@ -35,6 +35,7 @@ class PaymentController {
       const data = await paymentServices.findAll();
       return res.status(200).json({ data });
     } catch (error) {
+      console.log(error)
       return handleError(res, error);
     }
   }

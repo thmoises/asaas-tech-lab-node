@@ -11,7 +11,7 @@ services:
     environment:
       - NODE_ENV=development
       - ASAAS_BASE_URL=https://sandbox.asaas.com/api/v3
-      - ASAAS_API_KEY=$<YOUR_API_KEY>
+      - ASAAS_API_KEY=$aact_YTU5YTE0M2M2N2I4MTliNzk0YTI5N2U5MzdjNWZmNDQ6OjAwMDAwMDAwMDAwMDAwODkyNTM6OiRhYWNoX2U5ODQ4ZTI2LWQxNDctNDRiNC05MmRiLTczM2YyY2Q0YmRiMg==
     command: sh -c "npm install --legacy-peer-deps && npx sequelize-cli db:migrate || true && npx sequelize-cli db:seed:all || true && npm run start"
     deploy:
       resources:
