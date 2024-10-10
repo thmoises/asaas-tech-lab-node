@@ -24,3 +24,9 @@ services:
     volumes:
       - ./asaas-tech-lab-test:/scripts
     entrypoint: ["k6", "run", "/scripts/tests-script.js"]
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - '6379:6379'
