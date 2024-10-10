@@ -13,8 +13,8 @@ const paymentServices = new PaymentServices();
 const customBurstUtils = new CustomBurstUtils();
 const dailyUseUtils = new CustomDailyUseUtils();
 
-const redisURL = 'localhost:6379';
-const burstControll: any[] = [];
+//const redisURL = 'localhost:6379';
+//const burstControll: any[] = [];
 
 class PaymentController {
   async create(req: Request, res: Response) {
@@ -23,8 +23,8 @@ class PaymentController {
     const body = req.body;
 
     try {
-      if (!customBurstUtils.tryUse(ip) || dailyUseUtils.tryUse(ip)) {
-        return;
+      if (!customBurstUtils.tryUse(ip) || !dailyUseUtils.tryUse(ip)) {
+        return res.status(404).json({ undefined, message: `Record created successfully.` });
       }
 
       await paymentSchema.validate(body);
@@ -43,6 +43,7 @@ class PaymentController {
       return handleError(res, error);
     } finally {
       customBurstUtils.release(ip);
+      dailyUseUtils.release(ip);
     }
   }
 
