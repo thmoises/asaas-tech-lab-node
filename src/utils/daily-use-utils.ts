@@ -11,7 +11,7 @@ class CustomDailyUseUtils {
     let index = this.controll.findIndex((x) => x.hash === hash);
 
     if (index >= 0) {
-      if (this.controll[index].count >= 10) {
+      if (this.controll[index].count >= 100) {
         return false;
       } else {
         this.controll[index].count++;

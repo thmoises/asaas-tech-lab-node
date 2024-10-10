@@ -24,9 +24,8 @@ class PaymentController {
     const body = req.body;
 
     try {
-      console.log(username.iss)
       if (!customBurstUtils.tryUse(ip) || !dailyUseUtils.tryUse(username.iss)) {
-        return res.status(404).json({ undefined, message: `Record created successfully.` });
+        return res.status(519).json({ undefined, message: `Limite excedido.` });
       }
 
       await paymentSchema.validate(body);
@@ -45,7 +44,7 @@ class PaymentController {
       return handleError(res, error);
     } finally {
       customBurstUtils.release(ip);
-      dailyUseUtils.release(username.iss);
+      //dailyUseUtils.release(username.iss);
     }
   }
 
